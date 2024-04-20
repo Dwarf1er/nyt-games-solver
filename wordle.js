@@ -1,3 +1,5 @@
+import { setDefaultDate } from './setDefaultDate.js';
+
 function fetchWordleAnswers(date) {
     const wordleUrl = `https://corsproxy.io/?https://www.nytimes.com/svc/wordle/v2/${date}.json`;
     fetchAnswers(wordleUrl, 'wordleAnswers');
@@ -14,7 +16,7 @@ function fetchAnswers(url, targetId) {
             const wordleAnswer = data.solution.toUpperCase();
             const wordleLetters = wordleAnswer.split('');
             const wordleContainer = document.createElement('div');
-            wordleContainer.classList.add('wordle-container'); // Add wordle-container class
+            wordleContainer.classList.add('wordle-container');
             wordleLetters.forEach(letter => {
                 const card = document.createElement('div');
                 card.classList.add('card', 'mx-1');
@@ -24,12 +26,17 @@ function fetchAnswers(url, targetId) {
                 card.style.fontSize = '1.5rem';
                 card.style.lineHeight = '3rem';
                 card.textContent = letter;
-                wordleContainer.appendChild(card); // Append cards to wordleContainer
+                wordleContainer.appendChild(card);
             });
-            answersContainer.appendChild(wordleContainer); // Append wordleContainer to answersContainer
+            answersContainer.appendChild(wordleContainer);
         }
     })
     .catch(error => console.error('Error fetching answers:', error));
 }
+
+window.onload = function() {
+    const defaultDate = setDefaultDate();
+    fetchWordleAnswers(defaultDate);
+};
 
 export { fetchWordleAnswers };

@@ -1,3 +1,5 @@
+import { setDefaultDate } from './setDefaultDate.js';
+
 function fetchConnectionsAnswers(date) {
     const connectionsUrl = `https://corsproxy.io/?https://www.nytimes.com/svc/connections/v2/${date}.json`;
     fetchAnswers(connectionsUrl, 'connectionsAnswers');
@@ -53,5 +55,9 @@ function fetchAnswers(url, targetId) {
     .catch(error => console.error('Error fetching answers:', error));
 }
 
-// Export the fetchConnectionsAnswers function to make it accessible from other files
+window.onload = function() {
+    const defaultDate = setDefaultDate();
+    fetchConnectionsAnswers(defaultDate);
+};
+
 export { fetchConnectionsAnswers };
