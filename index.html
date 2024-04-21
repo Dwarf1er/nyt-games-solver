@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New York Times Games</title>
+    <title>New York Times Games Solver</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -36,37 +36,24 @@
     </div>
 </div>
 
-<script src="wordle.js" type="module"></script>
-<script src="connections.js" type="module"></script>
-<script src="setDefaultDate.js"></script>
+<script src="wordle.js"></script>
+<script src="connections.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const defaultDate = document.getElementById("datepicker").value;
-        import('./wordle.js').then(({ fetchWordleAnswers }) => {
-            fetchWordleAnswers(defaultDate);
-        });
-        import('./connections.js').then(({ fetchConnectionsAnswers }) => {
-            fetchConnectionsAnswers(defaultDate);
-        });
-    });
+    function fetchAllAnswers(date) {
+        fetchWordleAnswers(date);
+        fetchConnectionsAnswers(date);
+    }
 
     document.getElementById('datepicker').addEventListener('change', function() {
-        const selectedDate = document.getElementById('datepicker').value;
-        import('./wordle.js').then(({ fetchWordleAnswers }) => {
-            fetchWordleAnswers(selectedDate);
-        });
-        import('./connections.js').then(({ fetchConnectionsAnswers }) => {
-            fetchConnectionsAnswers(selectedDate);
-        });
+        const selectedDate = this.value;
+        fetchAllAnswers(selectedDate);
     });
 
-    const defaultDate = document.getElementById('datepicker').value;
-    import('./wordle.js').then(({ fetchWordleAnswers }) => {
-        fetchWordleAnswers(defaultDate);
-    });
-    import('./connections.js').then(({ fetchConnectionsAnswers }) => {
-        fetchConnectionsAnswers(defaultDate);
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('datepicker').value = today;
+        fetchAllAnswers(today);
     });
 </script>
 </body>

@@ -1,5 +1,3 @@
-import { setDefaultDate } from './setDefaultDate.js';
-
 function fetchWordleAnswers(date) {
     const wordleUrl = `https://corsproxy.io/?https://www.nytimes.com/svc/wordle/v2/${date}.json`;
     fetchAnswers(wordleUrl, 'wordleAnswers');
@@ -33,10 +31,3 @@ function fetchAnswers(url, targetId) {
     })
     .catch(error => console.error('Error fetching answers:', error));
 }
-
-window.onload = function() {
-    const defaultDate = setDefaultDate();
-    fetchWordleAnswers(defaultDate);
-};
-
-export { fetchWordleAnswers };
