@@ -1,9 +1,9 @@
 function fetchWordleAnswers(date) {
     const wordleUrl = `https://corsproxy.io/?https://www.nytimes.com/svc/wordle/v2/${date}.json`;
-    fetchAnswers(wordleUrl, 'wordleAnswers');
+    requestWordleAnswers(wordleUrl, 'wordleAnswers');
 }
 
-function fetchAnswers(url, targetId) {
+function requestWordleAnswers(url, targetId) {
     fetch(url)
     .then(response => response.json())
     .then(data => {

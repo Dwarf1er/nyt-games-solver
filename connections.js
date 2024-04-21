@@ -1,6 +1,6 @@
 function fetchConnectionsAnswers(date) {
     const connectionsUrl = `https://corsproxy.io/?https://www.nytimes.com/svc/connections/v2/${date}.json`;
-    fetchAnswers(connectionsUrl, 'connectionsAnswers');
+    requestConnectionsAnswers(connectionsUrl, 'connectionsAnswers');
 }
 
 function getBackgroundColor(index) {
@@ -18,7 +18,7 @@ function getBackgroundColor(index) {
     }
 }
 
-function fetchAnswers(url, targetId) {
+function requestConnectionsAnswers(url, targetId) {
     fetch(url)
     .then(response => response.json())
     .then(data => {
