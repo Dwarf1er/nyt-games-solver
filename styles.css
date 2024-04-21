@@ -1,7 +1,8 @@
 .list-group-item {
     border-color: #dee2e6;
     margin-bottom: 5px;
-    padding: 10px;
+    width: 20rem;
+    box-sizing: border-box;
 }
 
 .section-title {

@@ -28,19 +28,31 @@
         </div>
     </div>
 
-    <div class="row mt-5 justify-content-center">
-        <div class="col-md-6 section-container">
-            <h3 class="section-title">Connections Answers</h3>
-            <div id="connectionsAnswers"></div>
+    <div class="container mt-5">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-md-6 section-container">
+                <h3 class="section-title">Connections Answers</h3>
+                <div id="connectionsAnswers"></div>
+            </div>
         </div>
     </div>
 </div>
 
-<script src="setDefaultDate.js"></script>
 <script src="wordle.js" type="module"></script>
 <script src="connections.js" type="module"></script>
+<script src="setDefaultDate.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const defaultDate = document.getElementById("datepicker").value;
+        import('./wordle.js').then(({ fetchWordleAnswers }) => {
+            fetchWordleAnswers(defaultDate);
+        });
+        import('./connections.js').then(({ fetchConnectionsAnswers }) => {
+            fetchConnectionsAnswers(defaultDate);
+        });
+    });
+
     document.getElementById('datepicker').addEventListener('change', function() {
         const selectedDate = document.getElementById('datepicker').value;
         import('./wordle.js').then(({ fetchWordleAnswers }) => {

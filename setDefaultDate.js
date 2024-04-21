@@ -5,4 +5,4 @@ function setDefaultDate() {
     return formattedDate;
 }
 
-export { setDefaultDate };
+export { setDefaultDate }
